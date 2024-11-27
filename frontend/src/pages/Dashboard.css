@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Jua&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&family=Itim&family=Jua&display=swap");
+
+h2 {
+  font-family: "Itim", serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 2rem;
+  color: #2d3939;
+}
+
+body {
+  overflow: hidden;
+}
+
+.dashboard-container {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+  background-color: #cbdfde; /* Set background color to #e3f1f1 */
+  padding: 20px;
+  border-radius: 20px;
+  font-family: "Hubballi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.prayer-boxes {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10px;
+}
+
+.prayer-box {
+  margin-right: 5px;
+  margin-left: 15px;
+  padding: 0px;
+  font-size: 1.25rem;
+  border-radius: 100px; /* Slightly rounded corners */
+  background-color: white; /* Background color set to white */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow to give it a floating effect */
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  color: #3d5653; /* Text color set to dark green */
+}
+
+.prayer-box:hover {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Shadow becomes stronger on hover */
+}
+
+.prayer-box.completed {
+  border-color: #4caf50; /* Completed prayers have a green border */
+  background-color: #3d5653; /* Light green background for completed */
+  color: white; /* Text color set to white */
+}
+
+.checkbox {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.prayer-box.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background-color: #f4f4f4;
+  border-color: #ccc;
+  color: #3d5653;
+}
