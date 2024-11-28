@@ -56,13 +56,14 @@ const Dashboard = () => {
 
         navigator.geolocation.getCurrentPosition(async (position) => {
           const { latitude, longitude } = position.coords;
+          console.log(process.env.REACT_APP_LOCATIONIQ_API_KEY);
 
           // Use LocationIQ API to fetch city and country
           const geoResponse = await axios.get(
             "https://us1.locationiq.com/v1/reverse.php",
             {
               params: {
-                key: "pk.93cfedfdddda99f1dc775e2454beb519", // Replace with your LocationIQ API key
+                key: process.env.REACT_APP_LOCATIONIQ_API_KEY, // Replace with your LocationIQ API key
                 lat: latitude,
                 lon: longitude,
                 format: "json",
