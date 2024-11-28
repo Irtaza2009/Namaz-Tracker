@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Dashboard.css";
+import ProgressGrid from "../components/ProgressGrid.jsx";
 
 const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
@@ -176,29 +177,36 @@ const Dashboard = () => {
   if (error) return <p className="error">{error}</p>;
 
   return (
-    <div className="dashboard-container">
-      <h2>NAMAZ TRACKER</h2>
-      <div className="prayer-boxes">
-        {prayers.map((prayer) => {
-          const today = new Date().toISOString().split("T")[0];
-          const isChecked = prayerLog[prayer]?.includes(today);
-          const disabled = isPrayerDisabled(prayer);
+    <div className="container">
+      <div className="dashboard-container">
+        <h2>NAMAZ TRACKER</h2>
+        <div className="prayer-boxes">
+          {prayers.map((prayer) => {
+            const today = new Date().toISOString().split("T")[0];
+            const isChecked = prayerLog[prayer]?.includes(today);
+            const disabled = isPrayerDisabled(prayer);
 
-          return (
-            <div
-              key={prayer}
-              className={`prayer-box ${isChecked ? "completed" : ""} ${
-                disabled ? "disabled" : ""
-              }`}
-              onClick={() => !disabled && handleCheck(prayer)}
-            >
-              <h3>
-                {prayer} - {prayerTimes[prayer] || "N/A"}
-              </h3>
-              <div className="checkbox">{isChecked ? "✔" : "✗"}</div>
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={prayer}
+                className={`prayer-box ${isChecked ? "completed" : ""} ${
+                  disabled ? "disabled" : ""
+                }`}
+                onClick={() => !disabled && handleCheck(prayer)}
+              >
+                <h3>
+                  {prayer} - {prayerTimes[prayer] || "N/A"}
+                </h3>
+                <div className="checkbox">{isChecked ? "✔" : "✗"}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="progress-wrapper">
+        <h2>Progress</h2>
+        <h3>(Last 30 days)</h3>
+        <ProgressGrid className="progress-grid" />
       </div>
     </div>
   );

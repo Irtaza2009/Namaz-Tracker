@@ -13,9 +13,41 @@ body {
   overflow: hidden;
 }
 
-.dashboard-container {
-  max-width: 500px;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.progress-wrapper {
+  text-align: center;
+  justify-content: center;
   margin: 0 auto;
+  margin-top: 2%;
+  margin-right: 20%;
+  padding: 0px 30px 0px 30px;
+  font-family: "Hubballi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #2d3939;
+
+  background-color: #cbdfde; /* Optional: Add background for the grid */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for visual separation */
+}
+
+.progress-grid {
+  flex: 1;
+  padding: 10px;
+  background-color: #cbdfde; /* Optional: Add background for the grid */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for visual separation */
+}
+
+.dashboard-container {
+  flex: 1;
+  max-width: 35%;
+  margin: 0 15%;
   margin-top: 2%;
   margin-bottom: 2%;
   text-align: center;

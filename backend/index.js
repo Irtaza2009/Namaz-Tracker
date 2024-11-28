@@ -152,6 +152,30 @@ app.put("/prayer-log/:prayer", authenticateUser, async (req, res) => {
   }
 });
 
+app.get("/prayer-summary", authenticateUser, async (req, res) => {
+  const userId = req.user.id; // Extract user ID
+  try {
+    const prayerLog = await PrayerLog.findOne({ userId });
+
+    if (!prayerLog) {
+      return res.status(404).json({ message: "No prayer log found" });
+    }
+
+    const prayerCounts = {};
+
+    // Combine all prayer logs into a single array with prayer dates
+    Object.values(prayerLog.prayerLog).forEach((prayerTimes) => {
+      prayerTimes.forEach((date) => {
+        prayerCounts[date] = (prayerCounts[date] || 0) + 1;
+      });
+    });
+
+    res.status(200).json({ prayerCounts });
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching prayer summary" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

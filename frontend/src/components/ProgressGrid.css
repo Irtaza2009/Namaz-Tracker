@@ -1,0 +1,15 @@
+/* ProgressGrid.css */
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(15px, 1fr));
+  gap: 5px;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.grid-box {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
