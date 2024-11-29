@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Dashboard.css";
 import ProgressGrid from "../components/ProgressGrid.jsx";
+import QazaGrid from "../components/QazaGrid.jsx";
 
 const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
@@ -205,9 +206,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="progress-wrapper">
-        <h2>Progress</h2>
-        <h3>(Last 30 days)</h3>
-        <ProgressGrid className="progress-grid" />
+        <ProgressGrid />
+        <QazaGrid />
       </div>
     </div>
   );

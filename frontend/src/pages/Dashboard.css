@@ -11,55 +11,46 @@ h2 {
 
 body {
   overflow: visible;
-}
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.progress-wrapper {
-  text-align: center;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 2%;
-  margin-right: 15%;
-  padding: 0px 30px 0px 30px;
   font-family: "Hubballi", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #2d3939;
-
-  background-color: #cbdfde; /* Optional: Add background for the grid */
-  border-radius: 10px; /* Optional: Add rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for visual separation */
 }
 
-.progress-grid {
-  flex: 1;
-  padding: 10px;
-  background-color: #cbdfde; /* Optional: Add background for the grid */
-  border-radius: 10px; /* Optional: Add rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for visual separation */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns for larger screens */
+  gap: 30px; /* Space between columns */
+  justify-content: center; /* Center items horizontally */
+  align-items: top; /* Align items at the top */
+  padding: 20px;
 }
 
 .dashboard-container {
-  flex: 1;
-  max-width: 35%;
-  min-width: 400px;
-  margin: 0 15%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  text-align: center;
-  background-color: #cbdfde; /* Set background color to #e3f1f1 */
+  background-color: #cbdfde; /* Add background for sections */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
   padding: 20px;
-  border-radius: 20px;
+  text-align: center;
+  grid-column: 1; /* Occupies the first column */
+
+  margin-left: auto;
+  min-width: 500px;
+  max-height: fit-content;
+}
+
+.progress-wrapper {
+  grid-column: 2; /* Occupies the second column */
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   font-family: "Hubballi", sans-serif;
   font-weight: 400;
   font-style: normal;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for a consistent look */
+  color: #2d3939;
+  min-width: fit-content;
+  max-height: fit-content;
 }
 
 .prayer-boxes {
@@ -69,28 +60,27 @@ body {
 }
 
 .prayer-box {
-  margin-right: 5px;
-  margin-left: 15px;
+  margin: 0px;
   padding: 0px;
   font-size: 1.25rem;
-  border-radius: 100px; /* Slightly rounded corners */
-  background-color: white; /* Background color set to white */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow to give it a floating effect */
+  border-radius: 100px; /* Rounded shape */
+  background-color: white; /* White background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Floating effect */
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-  color: #3d5653; /* Text color set to dark green */
+  color: #3d5653; /* Text color */
 }
 
 .prayer-box:hover {
   transform: scale(1.05);
   background-color: #f0f0f0;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Shadow becomes stronger on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
 .prayer-box.completed {
-  border-color: #4caf50; /* Completed prayers have a green border */
-  background-color: #3d5653; /* Light green background for completed */
-  color: white; /* Text color set to white */
+  border-color: #4caf50; /* Green border for completed */
+  background-color: #3d5653; /* Dark green background */
+  color: white; /* White text */
 }
 
 .checkbox {
@@ -113,14 +103,20 @@ body {
 }
 
 /* Media Queries for Small Screens */
-@media (max-width: 768px) {
+@media (max-width: 1020px) {
   .container {
-    flex-direction: column; /* Stack items vertically */
+    grid-template-columns: 1fr; /* Stack all items vertically */
   }
 
-  .dashboard-container,
-  .progress-wrapper {
+  .dashboard-container {
     max-width: 90%; /* Adjust widths for smaller screens */
-    margin: 20px auto;
+    margin: 0 auto;
+    grid-column: 1;
+    align-items: center;
+  }
+  .progress-wrapper {
+    grid-column: 1;
+    margin: 0 auto;
+    align-items: center;
   }
 }

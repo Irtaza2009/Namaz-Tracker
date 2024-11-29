@@ -59,8 +59,12 @@ const ProgressGrid = () => {
   };
 
   return (
-    <div className="progress-grid">
-      {error ? <p>{error}</p> : generateGrid()}
+    <div className="progress-container">
+      <h2>Progress</h2>
+      <h3>(Last 30 days)</h3>
+      <div className="progress-grid">
+        {error ? <p>{error}</p> : generateGrid()}
+      </div>
     </div>
   );
 };

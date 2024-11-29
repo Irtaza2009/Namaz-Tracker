@@ -3,8 +3,11 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(15px, 1fr));
   gap: 5px;
-  max-width: 300px;
-  margin: 20px auto;
+  max-width: fit-content;
+  padding: 10px;
+  background-color: #cbdfde; /* Background for grid */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for grid */
 }
 
 .grid-box {
@@ -12,4 +15,23 @@
   height: 20px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+.progress-container {
+  font-family: "Hubballi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #2d3939;
+  max-width: fit-content;
+  background-color: #cbdfde; /* Add background for sections */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  padding: 20px;
+  text-align: center;
+}
+
+.progress-container h2,
+.progress-container h3 {
+  margin-top: 2px;
+  margin-bottom: 2px;
 }

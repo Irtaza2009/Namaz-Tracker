@@ -10,6 +10,13 @@ const prayerlogSchema = new mongoose.Schema({
     isha: [{ type: String }],
   },
   createdAt: { type: Date, default: Date.now },
+  qazaLog: {
+    Fajr: { type: Number, default: 0 },
+    Dhuhr: { type: Number, default: 0 },
+    Asr: { type: Number, default: 0 },
+    Maghrib: { type: Number, default: 0 },
+    Isha: { type: Number, default: 0 },
+  },
 });
 
 const PrayerLog = mongoose.model("PrayerLog", prayerlogSchema);

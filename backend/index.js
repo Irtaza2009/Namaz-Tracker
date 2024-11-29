@@ -176,6 +176,15 @@ app.get("/prayer-summary", authenticateUser, async (req, res) => {
   }
 });
 
+app.get("/qaza-log", async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    res.json({ qazaLog: user.qazalog });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch Qaza log." });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
