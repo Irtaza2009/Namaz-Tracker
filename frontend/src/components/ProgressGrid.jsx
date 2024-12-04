@@ -65,6 +65,36 @@ const ProgressGrid = () => {
       <div className="progress-grid">
         {error ? <p>{error}</p> : generateGrid()}
       </div>
+      <div className="legend">
+        <div className="legend-item">
+          <div
+            className="legend-box"
+            style={{ backgroundColor: shades[0] }}
+          ></div>
+          <span>No prayers</span>
+        </div>
+        <div className="legend-item">
+          <div
+            className="legend-box"
+            style={{ backgroundColor: shades[1] }}
+          ></div>
+          <span>1-2 prayers</span>
+        </div>
+        <div className="legend-item">
+          <div
+            className="legend-box"
+            style={{ backgroundColor: shades[2] }}
+          ></div>
+          <span>3-4 prayers</span>
+        </div>
+        <div className="legend-item">
+          <div
+            className="legend-box"
+            style={{ backgroundColor: shades[3] }}
+          ></div>
+          <span>5 prayers</span>
+        </div>
+      </div>
     </div>
   );
 };

@@ -14,8 +14,9 @@ const QazaGrid = () => {
           withCredentials: true,
         });
         setQazaLog(response.data.qazaLog || {});
+        console.log(response.data.qazaLog);
       } catch (err) {
-        console.error("Failed to fetch Qaza log.");
+        console.error("Failed to fetch Qaza log." + err);
       }
     };
 

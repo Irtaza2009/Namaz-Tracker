@@ -5,6 +5,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const cron = require("node-cron");
 
 const UserModel = require("./Models/User.js");
 const PrayerLog = require("./Models/PrayerLog.js"); // Import the PrayerLog model
@@ -121,6 +122,13 @@ app.get("/prayer-log", authenticateUser, async (req, res) => {
           maghrib: [],
           isha: [],
         },
+        qazaLog: {
+          fajr: 0,
+          dhuhr: 0,
+          asr: 0,
+          maghrib: 0,
+          isha: 0,
+        },
       });
     }
 
@@ -176,14 +184,60 @@ app.get("/prayer-summary", authenticateUser, async (req, res) => {
   }
 });
 
-app.get("/qaza-log", async (req, res) => {
+app.get("/qaza-log", authenticateUser, async (req, res) => {
+  const userId = req.user.id; // Extract user ID
   try {
-    const user = await User.findById(req.user.id);
-    res.json({ qazaLog: user.qazalog });
+    // Fetch the prayer log for the user
+    const prayerLog = await PrayerLog.findOne({ userId });
+
+    if (!prayerLog) {
+      return res.status(404).json({ message: "Prayer log not found" });
+    }
+
+    // Extract Qaza log from prayer log
+    const qazaLog = prayerLog.qazaLog;
+
+    res.status(200).json({ qazaLog });
   } catch (err) {
-    res.status(500).json({ message: "Failed to fetch Qaza log." });
+    res.status(500).json({ message: "Failed to fetch Qaza log" });
   }
 });
+
+// Function to increment Qaza counts daily
+
+const incrementQazaCounts = async () => {
+  try {
+    // Get all prayer logs
+    const prayerLogs = await PrayerLog.find({});
+
+    const today = new Date().toISOString().split("T")[0];
+
+    prayerLogs.forEach(async (log) => {
+      const updatedQazaLog = { ...log.qazaLog };
+
+      // Increment Qaza counts for prayers not logged for today
+      ["fajr", "dhuhr", "asr", "maghrib", "isha"].forEach((prayer) => {
+        if (!log.prayerLog[prayer]?.includes(today)) {
+          updatedQazaLog[prayer.charAt(0).toUpperCase() + prayer.slice(1)] =
+            (updatedQazaLog[prayer.charAt(0).toUpperCase() + prayer.slice(1)] ||
+              0) + 1;
+        }
+      });
+
+      // Update qazaLog
+      log.qazaLog = updatedQazaLog;
+      await log.save();
+    });
+
+    console.log("Qaza counts updated successfully!");
+  } catch (error) {
+    console.error("Error updating Qaza counts:", error);
+  }
+};
+
+// Scheduled the function to run daily at 11:59 PM
+
+cron.schedule("59 23 * * *", incrementQazaCounts);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
