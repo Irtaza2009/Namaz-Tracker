@@ -1,0 +1,185 @@
+/* Import Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Jua&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&family=Itim&family=Jua&display=swap");
+
+/* General Styles */
+body {
+  overflow: visible;
+  font-family: "Hubballi", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #2d3939;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+/* Container */
+.home-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Section */
+.home-header {
+  text-align: center;
+  background-color: #cbdfde;
+  color: #2d3939;
+  padding: 20px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home-header h1 {
+  font-family: "Hubballi", sans-serif;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.home-header .tagline {
+  font-family: "Itim", serif;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Description Section */
+.home-description {
+  margin-top: 40px;
+  text-align: center;
+  background-color: #cbdfde;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home-description h2 {
+  font-family: "Itim", serif;
+  font-size: 2rem;
+  color: #2d3939;
+}
+
+.home-description p {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Quick Links Section */
+.home-links {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.home-links h2 {
+  font-family: "Itim", serif;
+  font-size: 2rem;
+  color: #2d3939;
+}
+
+.link-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.btn {
+  font-family: "Itim", serif;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: #3d5653;
+  padding: 10px 20px;
+  border-radius: 100px;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background-color: #2d3939;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* API Section */
+.home-apis {
+  margin-top: 40px;
+  background-color: #cbdfde;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home-apis h2 {
+  font-family: "Itim", serif;
+  font-size: 2rem;
+  color: #2d3939;
+}
+
+.home-apis ul {
+  list-style: none;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.home-apis ul li {
+  margin: 5px 0;
+  color: #3d5653;
+}
+
+/* Footer */
+.home-footer {
+  margin-top: 50px;
+  text-align: center;
+  background-color: #3d5653;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.home-footer p {
+  font-family: "Itim", serif;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Media Queries for Small Screens */
+@media (max-width: 768px) {
+  .home-description,
+  .home-apis {
+    padding: 15px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+.footer-link:link {
+  color: #b5cdcc;
+  background-color: transparent;
+  text-decoration: none;
+  font-family: "Itim", serif;
+  font-weight: 500;
+}
+
+.footer-link:visited {
+  color: #9a9999; /* Deep grey */
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #e4c889; /* Bright orange for hover */
+  background-color: transparent;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+}
+
+.footer-link:active {
+  color: #c79c32; /* Bright yellow */
+  background-color: transparent;
+  text-decoration: underline;
+}
