@@ -88,7 +88,7 @@ const Dashboard = () => {
           }-${date.getFullYear()}`;
 
           const prayerTimesResponse = await axios.get(
-            `http://api.aladhan.com/v1/timingsByCity/${todayMDY}`,
+            `https://api.aladhan.com/v1/timingsByCity/${todayMDY}`,
             {
               params: {
                 city: city ? city : county.split(" ")[0],
