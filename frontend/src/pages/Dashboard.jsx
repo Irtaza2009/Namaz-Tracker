@@ -18,7 +18,7 @@ const Dashboard = () => {
     const fetchPrayerLog = async () => {
       try {
         const prayerLogResponse = await axios.get(
-          "http://localhost:3000/prayer-log",
+          "https://namaz-api.irtaza.xyz/prayer-log",
           {
             withCredentials: true, // Set only for this request (global setup causes CORS issues with other services i.e. LocationIQ and Aladhan)
           }
@@ -122,7 +122,7 @@ const Dashboard = () => {
         : [...(prayerLog[prayer] || []), today];
 
       await axios.put(
-        `http://localhost:3000/prayer-log/${prayer.toLowerCase()}`,
+        `https://namaz-api.irtaza.xyz/prayer-log/${prayer.toLowerCase()}`,
         {
           date: today,
         },

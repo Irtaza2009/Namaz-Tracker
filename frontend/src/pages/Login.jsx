@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       const result = await axios.post(
-        "http://localhost:3000/login",
+        "https://namaz-api.irtaza.xyz/login",
         {
           email: formData.email,
           password: formData.password,

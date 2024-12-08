@@ -36,7 +36,7 @@ function Signup() {
     }
 
     axios
-      .post("http://localhost:3000/signup", {
+      .post("https://namaz-api.irtaza.xyz/signup", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
