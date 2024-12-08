@@ -4,9 +4,14 @@ import "./ProgressGrid.css";
 
 const shades = ["#f5f5f5", "#e4c889", "#d3ae67", "#c79c32"]; // Define shades for 0, 1-2, 3-4, 5 prayers
 
-const ProgressGrid = () => {
+const ProgressGrid = ({ refreshTrigger }) => {
   const [prayerSummary, setPrayerSummary] = useState({});
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    // This effect will run whenever refreshTrigger changes, forcing a re-render
+    console.log("ProgressGrid re-rendered due to prayer log update.");
+  }, [refreshTrigger]);
 
   useEffect(() => {
     const fetchPrayerSummary = async () => {
@@ -24,7 +29,7 @@ const ProgressGrid = () => {
     };
 
     fetchPrayerSummary();
-  }, []);
+  }, [refreshTrigger]);
 
   const getShade = (count) => {
     if (count === 5) return shades[3];

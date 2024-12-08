@@ -11,6 +11,7 @@ const Dashboard = () => {
   const [prayerTimes, setPrayerTimes] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [refreshProgressGrid, setRefreshProgressGrid] = useState(0); // State to trigger re-render of ProgressGrid
 
   // Fetch initial prayer log and Azaan times
   useEffect(() => {
@@ -38,7 +39,12 @@ const Dashboard = () => {
 
         setPrayerLog(updatedPrayerLog);
       } catch (err) {
-        setError("Failed to fetch prayer log.");
+        if (err.response && err.response.status === 401) {
+          // Redirect to /Login on 401 Unauthorized
+          window.location.href = "/login";
+        } else {
+          setError("Failed to fetch prayer log.");
+        }
       }
     };
 
@@ -73,6 +79,7 @@ const Dashboard = () => {
           );
 
           const { city, country, county } = geoResponse.data.address;
+          console.log(city, country, county);
 
           // Fetch Azaan times
           const date = new Date();
@@ -128,6 +135,9 @@ const Dashboard = () => {
         ...prevLog,
         [prayer]: updatedLog,
       }));
+
+      // Trigger re-render of ProgressGrid by updating the refresh state
+      setRefreshProgressGrid((prev) => prev + 1); // Increment the trigger value to force re-render
     } catch (err) {
       setError("Failed to update prayer data. Please try again.");
     }
@@ -206,7 +216,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="progress-wrapper">
-        <ProgressGrid />
+        <ProgressGrid refreshTrigger={refreshProgressGrid} />
         <QazaGrid />
       </div>
     </div>

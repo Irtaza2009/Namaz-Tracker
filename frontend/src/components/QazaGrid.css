@@ -40,3 +40,34 @@
   margin-bottom: 5px;
   margin-top: 10px;
 }
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.qaza-button {
+  background-color: #ca9a32;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.qaza-button.increment {
+  background-color: #6a9f78; /* Soft green for increment */
+}
+
+.qaza-button.decrement {
+  background-color: #eaac4e; /* Muted gold for decrement */
+}
+
+.qaza-button:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}

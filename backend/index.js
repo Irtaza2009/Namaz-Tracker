@@ -72,7 +72,7 @@ app.post("/login", (req, res) => {
           res.cookie("token", token, {
             httpOnly: true, // Makes the cookie inaccessible to JavaScript
             secure: true,
-            maxAge: 24 * 60 * 60 * 1000, // Cookie expiry: 1 day
+            maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie expiry: 7 days
             sameSite: "None",
           });
           res.status(200).json({ message: "Successfully Logged In" });
@@ -203,8 +203,73 @@ app.get("/qaza-log", authenticateUser, async (req, res) => {
   }
 });
 
-// Function to increment Qaza counts daily
+// Increment Qaza count for a specific prayer
+app.post("/qaza-log/increment", authenticateUser, async (req, res) => {
+  const userId = req.user.id; // Extract user ID
+  const { prayer } = req.body; // Prayer to increment (e.g., "fajr", "dhuhr")
 
+  if (!["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"].includes(prayer)) {
+    return res.status(400).json({ message: "Invalid prayer name" });
+  }
+
+  try {
+    // Find and update the user's Qaza log
+    const updatedLog = await PrayerLog.findOneAndUpdate(
+      { userId },
+      { $inc: { [`qazaLog.${prayer}`]: 1 } },
+      { new: true }
+    );
+
+    if (!updatedLog) {
+      return res.status(404).json({ message: "Prayer log not found" });
+    }
+
+    res.status(200).json({
+      message: `${prayer} Qaza incremented`,
+      qazaLog: updatedLog.qazaLog,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Error incrementing Qaza count" });
+  }
+});
+
+// Decrement Qaza count for a specific prayer
+app.post("/qaza-log/decrement", authenticateUser, async (req, res) => {
+  const userId = req.user.id; // Extract user ID
+  const { prayer } = req.body; // Prayer to decrement (e.g., "fajr", "dhuhr")
+
+  if (!["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"].includes(prayer)) {
+    return res.status(400).json({ message: "Invalid prayer name" });
+  }
+
+  try {
+    const prayerLog = await PrayerLog.findOne({ userId });
+
+    if (!prayerLog) {
+      return res.status(404).json({ message: "Prayer log not found" });
+    }
+
+    // Prevent Qaza count from going below zero
+    if (prayerLog.qazaLog[prayer] <= 0) {
+      return res
+        .status(400)
+        .json({ message: `${prayer} Qaza count is already at 0` });
+    }
+
+    // Decrement Qaza count
+    prayerLog.qazaLog[prayer] -= 1;
+    await prayerLog.save();
+
+    res.status(200).json({
+      message: `${prayer} Qaza decremented`,
+      qazaLog: prayerLog.qazaLog,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Error decrementing Qaza count" });
+  }
+});
+
+// Function to increment Qaza counts daily
 const incrementQazaCounts = async () => {
   try {
     // Get all prayer logs
@@ -236,7 +301,6 @@ const incrementQazaCounts = async () => {
 };
 
 // Scheduled the function to run daily at 11:59 PM
-
 cron.schedule("59 23 * * *", incrementQazaCounts);
 
 app.listen(PORT, () => {
