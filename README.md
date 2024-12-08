@@ -5,7 +5,7 @@ Effortlessly monitor your progress and stay consistent with your prayers.
 
 Check it out at: https://namaz-tracker.irtaza.xyz/
 
-![Dashboard](./Images/Dashboard.png)
+![Dashboard](https://cloud-p8pfb3894-hack-club-bot.vercel.app/0dashboard.png)
 _(A clean and user-friendly interface for tracking prayers.)_
 
 > 🚧 **Currently under development!** 🚧
@@ -64,7 +64,7 @@ In the project directory, you can run:
 
 ### Dashboard
 
-![Dashboard Preview](./Images/Dashboard.png)  
+![Dashboard Preview](https://cloud-p8pfb3894-hack-club-bot.vercel.app/0dashboard.png)  
 _(A clean and user-friendly interface for tracking prayers.)_
 
 ---
