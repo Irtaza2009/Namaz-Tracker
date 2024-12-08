@@ -1,6 +1,6 @@
 # 🌙 Namaz Tracker
 
-**An open-source, web-based prayer tracker to help users track their daily prayers for up to 30 days.**  
+**An open-source, web-based prayer tracker to help users track their daily prayers.**  
 Effortlessly monitor your progress and stay consistent with your prayers.
 
 ![Dashboard](./Images/Dashboard.png)
@@ -12,7 +12,7 @@ _(A clean and user-friendly interface for tracking prayers.)_
 
 ## ✨ Features
 
-- **Prayer Tracking**: Log and review your prayer progress for 30 days.
+- **Prayer Tracking**: Log and review your prayer progress.
 - **Real-Time Prayer Timings**: Leverages the Aladhan API for accurate Adhan timings based on your location.
 - **Location Awareness**: Automatically detects your location using the LocationIQ API for a personalized experience.
 
