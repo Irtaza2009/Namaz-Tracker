@@ -65,7 +65,7 @@ app.post("/login", (req, res) => {
           const token = jwt.sign(
             { email: user.email, id: user._id }, // Include user ID in token payload
             process.env.JWT_SECRET,
-            { expiresIn: "1d" }
+            { expiresIn: "7d" }
           );
 
           // Set the token in a cookie

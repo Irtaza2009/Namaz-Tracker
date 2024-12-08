@@ -3,6 +3,8 @@
 **An open-source, web-based prayer tracker to help users track their daily prayers.**  
 Effortlessly monitor your progress and stay consistent with your prayers.
 
+Check it out at: https://namaz-tracker.irtaza.xyz/
+
 ![Dashboard](./Images/Dashboard.png)
 _(A clean and user-friendly interface for tracking prayers.)_
 
