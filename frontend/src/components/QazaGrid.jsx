@@ -10,9 +10,12 @@ const QazaGrid = () => {
   useEffect(() => {
     const fetchQazaLog = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/qaza-log", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          "https://namaz-api.irtaza.xyz/qaza-log",
+          {
+            withCredentials: true,
+          }
+        );
         setQazaLog(response.data.qazaLog || {});
         console.log(response.data.qazaLog);
       } catch (err) {
@@ -28,7 +31,7 @@ const QazaGrid = () => {
     try {
       const updatedCount = (qazaLog[prayer] || 0) + 1;
       await axios.post(
-        `http://localhost:3000/qaza-log/increment`,
+        `https://namaz-api.irtaza.xyz/qaza-log/increment`,
         { prayer },
         { withCredentials: true }
       );
@@ -43,7 +46,7 @@ const QazaGrid = () => {
     try {
       const updatedCount = Math.max((qazaLog[prayer] || 0) - 1, 0);
       await axios.post(
-        `http://localhost:3000/qaza-log/decrement`,
+        `https://namaz-api.irtaza.xyz/qaza-log/decrement`,
         { prayer },
         { withCredentials: true }
       );

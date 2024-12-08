@@ -17,7 +17,7 @@ const ProgressGrid = ({ refreshTrigger }) => {
     const fetchPrayerSummary = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/prayer-summary",
+          "https://namaz-api.irtaza.xyz/prayer-summary",
           {
             withCredentials: true,
           }
