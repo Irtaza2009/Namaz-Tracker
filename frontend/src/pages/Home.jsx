@@ -24,7 +24,7 @@ const Home = () => {
           <a href="/login" className="btn">
             Login
           </a>
-          <a href="/register" className="btn">
+          <a href="/signup" className="btn">
             Register
           </a>
           <a href="/dashboard" className="btn">
