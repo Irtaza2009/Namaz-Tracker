@@ -3,7 +3,9 @@
 export default function handler(req, res) {
   const allowedOrigins = [
     "https://namaz-tracker.irtaza.xyz",
+    "https://namaz-tracker.irtaza.xyz/*",
     "http://localhost:8081",
+    "http://localhost:8081/*",
   ];
 
   const origin = req.headers.origin;
