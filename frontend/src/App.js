@@ -6,10 +6,6 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Home from "./pages/Home.jsx";
 import "./App.css";
 
-// TODO 4: Add button to redirect to signup page from login page
-// TODO 5: Add button to redirect to login page from signup page
-// TODO 6: Add a button to logout from the dashboard page
-
 function App() {
   return (
     <BrowserRouter>
